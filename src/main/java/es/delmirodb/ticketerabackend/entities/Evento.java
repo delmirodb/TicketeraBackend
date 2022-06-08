@@ -21,13 +21,17 @@ public class Evento {
 
     private String nombre;
     private String fecha;
+    private String ciudad;
+    private String descripcion;
 
     @ManyToOne
     private TipoEvento tipo;
 
-    public Evento(String nombre, String fecha, TipoEvento tipo){
+    public Evento(String nombre, String fecha, String ciudad, String descripcion, TipoEvento tipo){
         this.nombre = nombre;
-        this. fecha = fecha;
+        this.fecha = fecha;
+        this.ciudad = ciudad;
+        this.descripcion = descripcion;
         this.tipo = tipo;
     }
 

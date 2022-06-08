@@ -48,9 +48,6 @@ public class DatabaseLoader implements CommandLineRunner {
             this.EstadoAsiento.save(new EstadoAsiento(2L, "Comprado"));
             this.EstadoAsiento.save(new EstadoAsiento(3L, "Reservado"));
 
-            this.TipoAsiento.save(new TipoAsiento(1L, "General", 10.00));
-            this.TipoAsiento.save(new TipoAsiento(2L, "VIP", 30.00));
-
             this.EstadoTicket.save(new EstadoTicket(1L, "Válido"));
             this.EstadoTicket.save(new EstadoTicket(2L, "Utilizado"));
             this.EstadoTicket.save(new EstadoTicket(3L, "Reembolsado"));
@@ -62,7 +59,11 @@ public class DatabaseLoader implements CommandLineRunner {
 
             Admin admin = new Admin("admin", "admin", "admin@ticketquevedo.com", "admin", 3);
             this.UsuarioRepository.save(usuarioService.newAdmin(admin));
-            this.Evento.save(new Evento("Delmiro's Show", "24/02/2022", TipoEvento.getById(2L)));
+            this.Evento.save(new Evento("Delmiro's Show", "24/02/2022", "Madrid", "Show de Delmiro", TipoEvento.getById(2L)));
+
+            this.TipoAsiento.save(new TipoAsiento(1L, "General", 10.00));
+            this.TipoAsiento.save(new TipoAsiento(2L, "VIP", 30.00));
+
             for (int i = 0; i < 10; i++){
                 this.Asiento.save(new Asiento(TipoAsiento.getById(1L), EstadoAsiento.getById(1L), Evento.getById(2L)));
             }

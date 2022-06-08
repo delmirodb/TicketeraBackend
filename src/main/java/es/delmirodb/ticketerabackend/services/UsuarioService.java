@@ -112,7 +112,7 @@ public class UsuarioService {
 
         try {
             Date dt = new Date();
-            Date expires = new Date(dt.getTime() + (120000));
+            Date expires = new Date(dt.getTime() + (60 * 60 * 1000));
             Algorithm algorithm = Algorithm.RSA256(null, privateKey);
             return JWT.create()
                     .withIssuer("compralasVerify")
