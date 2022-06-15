@@ -13,9 +13,9 @@ import java.security.spec.X509EncodedKeySpec;
 
 public class TokenService {
 
-    public static PrivateKey getPrivate(String filename) throws Exception {
+    public static PrivateKey getPrivate(byte[] keyBytes) throws Exception {
 
-        byte[] keyBytes = Files.readAllBytes(Paths.get(filename));
+        //byte[] keyBytes = Files.readAllBytes(Paths.get(filename));
 
         PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(keyBytes);
         KeyFactory kf = KeyFactory.getInstance("RSA");
@@ -23,10 +23,10 @@ public class TokenService {
 
     }
 
-    public static PublicKey getPublic(String filename)
+    public static PublicKey getPublic(byte[] keyBytes)
             throws Exception {
 
-        byte[] keyBytes = Files.readAllBytes(Paths.get(filename));
+        // byte[] keyBytes = Files.readAllBytes(Paths.get(filename));
 
         X509EncodedKeySpec spec = new X509EncodedKeySpec(keyBytes);
         KeyFactory kf = KeyFactory.getInstance("RSA");
