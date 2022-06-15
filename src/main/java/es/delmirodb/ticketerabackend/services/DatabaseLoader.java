@@ -57,17 +57,21 @@ public class DatabaseLoader implements CommandLineRunner {
             this.TipoEvento.save(new TipoEvento(3L, "Musical"));
             this.TipoEvento.save(new TipoEvento(4L, "Streaming"));
 
-            Admin admin = new Admin("admin", "admin", "admin@ticketquevedo.com", "admin", 3);
+            Admin admin = new Admin("admin", "admin", "admin@compralas.es", "admin", 3);
             this.UsuarioRepository.save(usuarioService.newAdmin(admin));
-            this.Evento.save(new Evento("Delmiro's Show", "24/02/2022", "Madrid", "Show de Delmiro", TipoEvento.getById(2L)));
+            this.Evento.save(new Evento("Delmiro's Show", "17/06/2022", "Madrid", "Show de Delmiro", TipoEvento.getById(2L)));
+            this.Evento.save(new Evento("Delmiro's Streaming", "17/06/2022", "Streaming", "Streaming de Delmiro", TipoEvento.getById(4L)));
 
             this.TipoAsiento.save(new TipoAsiento(1L, "General", 10.00));
             this.TipoAsiento.save(new TipoAsiento(2L, "VIP", 30.00));
 
-            for (int i = 0; i < 10; i++){
-                this.Asiento.save(new Asiento(TipoAsiento.getById(1L), EstadoAsiento.getById(1L), Evento.getById(2L)));
+            for(int x = 2; x < 4; x++){
+                for (int i = 0; i < 20; i++){
+                    this.Asiento.save(new Asiento(TipoAsiento.getById(1L), EstadoAsiento.getById(1L), Evento.getById((long) x)));
+                }
             }
             this.Asiento.save(new Asiento(TipoAsiento.getById(2L), EstadoAsiento.getById(1L), Evento.getById(2L)));
+
         }
 
     }

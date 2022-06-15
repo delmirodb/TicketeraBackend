@@ -1,9 +1,10 @@
 package es.delmirodb.ticketerabackend.controllers;
 
-import es.delmirodb.ticketerabackend.entities.Asiento;
 import es.delmirodb.ticketerabackend.entities.Evento;
+import es.delmirodb.ticketerabackend.entities.Ticket;
 import es.delmirodb.ticketerabackend.repositories.AsientoRepository;
 import es.delmirodb.ticketerabackend.repositories.EventoRepository;
+import es.delmirodb.ticketerabackend.repositories.TicketRepository;
 import es.delmirodb.ticketerabackend.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,8 @@ public class EventoController {
     private AsientoRepository asientoRepository;
     @Autowired
     private UsuarioService usuarioService;
+    @Autowired
+    private TicketRepository ticketRepository;
 
     @GetMapping("/home/eventos")
     public List<Evento> getEventosRandom() {
@@ -48,8 +51,21 @@ public class EventoController {
     }
 
     @PostMapping("/comprarEntradas")
-    public String comprarEntradas(HttpServletRequest request) throws Exception {
-        usuarioService.comprarEntradas(request);
-        throw new ResponseStatusException(HttpStatus.OK);
+    public Long comprarEntradas(HttpServletRequest request) throws Exception {
+        return usuarioService.comprarEntradas(request);
+    }
+
+    @PostMapping("/stream")
+    public String getAcceso(HttpServletRequest request) throws Exception {
+
+        long idCliente = usuarioService.getUserID(request);
+        Long idEvento = Long.valueOf(request.getParameter("id"));
+
+        Ticket ticket = ticketRepository.validarCompraStreaming(idCliente, idEvento);
+        if(ticket != null){
+            throw new ResponseStatusException(HttpStatus.OK);
+        } else {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+        }
     }
 }

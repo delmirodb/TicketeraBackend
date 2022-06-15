@@ -15,10 +15,6 @@ public class EmailService {
     @Autowired
     private JavaMailSender emailSender;
 
-    public void setMailSender(JavaMailSender emailSender) {
-        this.emailSender = emailSender;
-    }
-
     public void sendSimpleMessage(String to, String subject, String text) {
         try {
             MimeMessage message = emailSender.createMimeMessage();
