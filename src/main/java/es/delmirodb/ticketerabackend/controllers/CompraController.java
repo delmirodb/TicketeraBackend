@@ -1,11 +1,5 @@
 package es.delmirodb.ticketerabackend.controllers;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.JWTVerifier;
-import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.auth0.jwt.interfaces.DecodedJWT;
-import com.fasterxml.jackson.annotation.JacksonAnnotationsInside;
 import es.delmirodb.ticketerabackend.entities.Cliente;
 import es.delmirodb.ticketerabackend.entities.Compra;
 import es.delmirodb.ticketerabackend.entities.Evento;
@@ -15,7 +9,6 @@ import es.delmirodb.ticketerabackend.repositories.CompraRepository;
 import es.delmirodb.ticketerabackend.repositories.EventoRepository;
 import es.delmirodb.ticketerabackend.repositories.TicketRepository;
 import es.delmirodb.ticketerabackend.services.EmailService;
-import es.delmirodb.ticketerabackend.services.TokenService;
 import es.delmirodb.ticketerabackend.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.http.HttpServletRequest;
-import java.security.interfaces.RSAPublicKey;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;

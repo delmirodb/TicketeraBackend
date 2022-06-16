@@ -2,7 +2,6 @@ package es.delmirodb.ticketerabackend.controllers;
 
 import es.delmirodb.ticketerabackend.entities.EstadoTicket;
 import es.delmirodb.ticketerabackend.entities.Ticket;
-import es.delmirodb.ticketerabackend.repositories.EstadoAsientoRepository;
 import es.delmirodb.ticketerabackend.repositories.EstadoTicketRepository;
 import es.delmirodb.ticketerabackend.repositories.TicketRepository;
 import es.delmirodb.ticketerabackend.services.UsuarioService;

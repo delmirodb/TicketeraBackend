@@ -3,7 +3,6 @@ package es.delmirodb.ticketerabackend.controllers;
 import es.delmirodb.ticketerabackend.entities.Cliente;
 import es.delmirodb.ticketerabackend.entities.Usuario;
 import es.delmirodb.ticketerabackend.repositories.UsuarioRepository;
-import es.delmirodb.ticketerabackend.services.EmailService;
 import es.delmirodb.ticketerabackend.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

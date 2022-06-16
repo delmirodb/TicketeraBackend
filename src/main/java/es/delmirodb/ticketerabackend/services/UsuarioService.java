@@ -9,7 +9,6 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import es.delmirodb.ticketerabackend.entities.*;
 import es.delmirodb.ticketerabackend.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpStatus;
@@ -17,23 +16,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import org.springframework.util.FileCopyUtils;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.lang.reflect.Array;
-import java.net.URI;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 
 @Service
@@ -270,9 +260,6 @@ public class UsuarioService {
 
     public String generateToken(Long id) throws Exception {
 
-        // File file = ResourceUtils.getFile("classpath:private_key.der");
-        // String clavePrivada = file.getPath();
-
         Resource resource = resourceLoader.getResource("classpath:private_key.der");
         InputStream inputStream = resource.getInputStream();
 
@@ -297,9 +284,6 @@ public class UsuarioService {
     public String verifyToken(HttpServletRequest request) throws Exception {
         String token = request.getParameter("token");
 
-        // File file = ResourceUtils.getFile("classpath:public_key.der");
-        // String clavePublica = file.getPath();
-
         Resource resource = resourceLoader.getResource("classpath:public_key.der");
         InputStream inputStream = resource.getInputStream();
 
@@ -323,9 +307,6 @@ public class UsuarioService {
         if(token == null){
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);
         }
-
-        // File file = ResourceUtils.getFile("classpath:public_key.der");
-        // String clavePublica = file.getPath();
 
         Resource resource = resourceLoader.getResource("classpath:public_key.der");
         InputStream inputStream = resource.getInputStream();
