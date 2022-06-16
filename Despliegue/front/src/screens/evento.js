@@ -60,7 +60,9 @@ function Evento() {
             datosEntrada += "<h6>Entrada Nº" + i + "</h6>"
             datosEntrada += "<input id='nombre" + i + "' name='nombre" + i + "' placeholder='Nombre'></input><br />"
             datosEntrada += "<input id='apellido" + i + "' name='apellido" + i + "' placeholder='Apellido'></input><br />"
-            datosEntrada += "<input id='dni" + i + "' name='dni" + i + "' placeholder='DNI'></input>"
+            if(tipoEvento !== 4){
+                datosEntrada += "<input id='dni" + i + "' name='dni" + i + "' placeholder='DNI'></input>"
+            }
             datosEntrada += "</div>"
         }
         document.getElementById('datosEntrada').innerHTML = datosEntrada;

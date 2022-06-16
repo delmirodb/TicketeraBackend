@@ -35,5 +35,8 @@ export const api = {
     },
     validarTicket: function(id, token){
         return axios.post(`${url_api}/validar?id=${id}&usuarioSessionID=${token}`)
+    },
+    reenviarEntradas: function(eventoNombre, idCompra, nEntradas, token){
+        return axios.post(`${url_api}/reenviarEntradas?Evento=${eventoNombre}&idCompra=${idCompra}&nEntradas=${nEntradas}&usuarioSessionID=${token}`)
     }
 }

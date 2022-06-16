@@ -14,6 +14,7 @@ function Stream() {
     let token = getCookieValue('sess');
 
     const [stream, setStream] = useState(false);
+    const [evento, setEvento] = useState(false);
 
     const getStream = async () => {
         await api.validarAcceso(id, token)
@@ -25,9 +26,20 @@ function Stream() {
             })
     }
 
+    const getEvento = async () => {
+        await api.getEvento(id)
+            .then(response => {
+                setEvento(response.data);
+            }).catch(error => {
+                window.location.href = "/";
+                console.log(error)
+            })
+    }
+
     useEffect(() => {
         async function showStream() {
             getStream();
+            getEvento();
         }
         showStream()
     }, [])
@@ -35,6 +47,7 @@ function Stream() {
     if (stream) {
         return (
             <Container style={{ marginTop: 40, marginBottom: 40 }}>
+                <h2>{evento.nombre}</h2>
                 <iframe src="http://localhost:8080/players/hls.html" width={1000} height={450} />
             </Container>
         )

@@ -34,6 +34,19 @@ function Compra(){
         showCompra()
     }, [])
 
+    const reenviarEntradas = async () => {
+        let eventoNombre = compra.Tickets[0].evento.nombre;
+        let idCompra = compra.Compra.id;
+        let nEntradas = ticketCount;
+        document.getElementById("botonReenviar").classList.add("hidden");
+        document.getElementById("spinnerReenviar").classList.add("show");
+        await api.reenviarEntradas(eventoNombre, idCompra, nEntradas, token)
+            .then(response => {
+                document.getElementById("spinnerReenviar").classList.remove("show");
+                document.getElementById("mensajeReenviar").classList.add("show");
+            })
+    }
+
 if(compra){
     return(
         <Container>
@@ -45,7 +58,9 @@ if(compra){
                 <b>Total: </b> {compra.Compra.importe}€
             </p>
             <p><b>¿No encuentras las entradas en tu correo?</b></p>
-            <button className="boton">Reenviar entradas</button>
+            <button className="boton" id="botonReenviar" onClick={reenviarEntradas}>Reenviar entradas</button>
+            <p id="mensajeReenviar" style={{display: 'none'}}>Tus entradas han sido enviadas.</p>
+            <Spinner animation="border" id="spinnerReenviar" style={{ display: 'none'}} />
             <div className="entradas" style={{ marginBottom: 40 }}>
             {compra.Tickets.map((value, index) => {
                             return (
