@@ -121,7 +121,7 @@ public class UsuarioService {
             if(evento.getTipo().getId() == 4){
                 Ticket ticket = new Ticket(asiento, evento, compra, comprador, estadoTicket);
                 ticketRepository.save(ticket);
-                eventoDetalles = "<br/><br/> El evento será retransmitido <a href='http://localhost:3000/stream/" + evento.getId() + "'>aquí</a>";
+                eventoDetalles = "<br/><br/> El evento será retransmitido <a href='https://compralas.es/stream/" + evento.getId() + "'>aquí</a>";
             } else {
                 if (clienteExistente == null) {
                     usuarioRepository.save(cliente);
