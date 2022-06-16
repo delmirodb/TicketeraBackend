@@ -54,18 +54,23 @@ public class DatabaseLoader implements CommandLineRunner {
 
             this.TipoEvento.save(new TipoEvento(1L, "Obra"));
             this.TipoEvento.save(new TipoEvento(2L, "Stand-up"));
-            this.TipoEvento.save(new TipoEvento(3L, "Musical"));
+            this.TipoEvento.save(new TipoEvento(3L, "Concierto"));
             this.TipoEvento.save(new TipoEvento(4L, "Streaming"));
+            this.TipoEvento.save(new TipoEvento(5L, "Deportivo"));
 
             Admin admin = new Admin("admin", "admin", "admin@compralas.es", "admin", 3);
             this.UsuarioRepository.save(usuarioService.newAdmin(admin));
             this.Evento.save(new Evento("Delmiro's Show", "17/06/2022", "Madrid", "Show de Delmiro", TipoEvento.getById(2L)));
             this.Evento.save(new Evento("Delmiro's Streaming", "17/06/2022", "Streaming", "Streaming de Delmiro", TipoEvento.getById(4L)));
+            this.Evento.save(new Evento("Reggaeton Beach Festival", "2/07/2022", "Madrid", "Reggaeton Beach Festival - Recinto Mad Cool", TipoEvento.getById(3L)));
+            this.Evento.save(new Evento("Mundial de globos", "1/07/2022", "Streaming", "Segunda edición del mundial de globos", TipoEvento.getById(4L)));
+            this.Evento.save(new Evento("Champions League Final", "10/06/2022", "Estambul", "Final de la Champions League", TipoEvento.getById(5L)));
+            this.Evento.save(new Evento("Wimbledon Final", "10/07/2022", "Londres", "Final de Wimbledon", TipoEvento.getById(5L)));
 
             this.TipoAsiento.save(new TipoAsiento(1L, "General", 10.00));
             this.TipoAsiento.save(new TipoAsiento(2L, "VIP", 30.00));
 
-            for(int x = 2; x < 4; x++){
+            for(int x = 2; x < 8; x++){
                 for (int i = 0; i < 20; i++){
                     this.Asiento.save(new Asiento(TipoAsiento.getById(1L), EstadoAsiento.getById(1L), Evento.getById((long) x)));
                 }
