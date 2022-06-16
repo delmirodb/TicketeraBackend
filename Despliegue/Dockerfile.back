@@ -1,0 +1,3 @@
+FROM amazoncorretto:11-alpine-jdk
+COPY Ticketera.jar Ticketera.jar
+ENTRYPOINT ["java","-jar","/Ticketera.jar"]

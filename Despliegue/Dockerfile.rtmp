@@ -1,0 +1,2 @@
+FROM alqutami/rtmp-hls
+COPY rtmp/hls.html /usr/local/nginx/html/players/hls.html
