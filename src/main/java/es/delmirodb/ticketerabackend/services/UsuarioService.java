@@ -25,10 +25,14 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.net.URI;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
@@ -127,6 +131,20 @@ public class UsuarioService {
                     Ticket ticket = new Ticket(asiento, evento, compra, clienteExistente, estadoTicket);
                     ticketRepository.save(ticket);
                 }
+            }
+        }
+
+        if(evento.getTipo().getId() != 4) {
+            compraRepository.flush();
+
+            long idCompra = compra.getId();
+            Object[] ticketsArray = ticketRepository.findTicketsCompra(idCompra).stream().map(Ticket::getId).toArray();
+            System.out.println(Arrays.toString(ticketsArray));
+
+            eventoDetalles = "<br/><br/> Aquí tienes tus entradas:";
+
+            for (int i = 0; i < nEntradas; i++) {
+                eventoDetalles += "<br/><br/> Entrada " + (i+1) + ": <br/> <img src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://compralas.es/verificar/"+ ticketsArray[i] +"'/>";
             }
         }
 
