@@ -144,7 +144,7 @@ public class UsuarioService {
             eventoDetalles = "<br/><br/> Aquí tienes tus entradas:";
 
             for (int i = 0; i < nEntradas; i++) {
-                eventoDetalles += "<br/><br/> Entrada " + (i+1) + ": <br/> <img src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://compralas.es/verificar/"+ ticketsArray[i] +"'/>";
+                eventoDetalles += "<br/><br/> Entrada " + (i+1) + ": <br/> <img src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://compralas.es/validar/"+ ticketsArray[i] +"'/>";
             }
         }
 
